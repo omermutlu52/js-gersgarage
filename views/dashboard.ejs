@@ -1,0 +1,166 @@
+<%- include('partials/header'); %>
+<!-- BREADCRUMB -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">HOME</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            ABOUT US
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- BREADCRUMB -->
+
+
+
+
+<!-- MY ACCOUNT -->
+<section class="my-account">
+    <div class="container">
+        <div class="col-md-12">
+            <% if(locals.errors){ %> <% errors.forEach(function(error) { %>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <%= error.msg %>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  </div>
+              </div>
+                <% }); %> <% } %> <% if(success_msg != ''){ %>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <%= success_msg %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                  
+                <% } %> <% if(error_msg != ''){ %>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <%= error_msg %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <% } %> <% if(error != ''){ %>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <%= error %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            <div class="d-flex align-items-start">
+               
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</button>
+                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">My Profile</button>
+                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Bookings</button>
+                    <a href="/logout" class="nav-link">Sign Out</a>
+                </div>
+                <div class="tab-content card" id="v-pills-tabContent">
+                    <div class="tab-pane card-body fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <h5>Hello,<%=  user.firstname + " " +user.lastname %> </h5>
+                        <p>From your account dashboard you can view your recent bookins and manage your profile details.</p>
+                    </div>
+                    <div class="tab-pane card-body fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <form action="#" class="myaccount-form">
+                            <div class="myaccount-form-inner">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">First Name:</label>
+                                        <input class="form-control form-control-sm" name="firstname" id="firstname" type="text" value="<%= user.firstname %>" placeholder="Type Here" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Last Name:</label>
+                                        <input class="form-control form-control-sm" name="lastname" type="text" value="<%= user.lastname%>" placeholder="Type Here" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Username:</label>
+                                        <input class="form-control form-control-sm" type="text" value="<%= user.username %>" placeholder="Type Here" disabled>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email Address:</label>
+                                        <input class="form-control form-control-sm" type="email" value="<%= user.email %>" placeholder="Type Here" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Phone #:</label>
+                                        <input class="form-control form-control-sm" type="number" value="<%= user.number %>" placeholder="Type Here" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Address:</label>
+                                        <input class="form-control form-control-sm" type="text" value="<%= user.address %>" placeholder="Type Here" required>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane card-body fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th>SR#</th>
+                                        <th>MY INFO</th>
+                                        <th>VEHICLE</th>
+                                        <th>TYPE & STATUS</th>
+                                    </tr>
+                                    <% let sr =1 %>
+                                    <% booking.forEach(function (booking) { %>
+
+                                            <tr>
+                                                <td class="text-start">   
+                                                   <%= sr %>
+                                                </td>
+                                                <td class="text-start">                           
+                                                    <%= user.firstname; %> <%= user.lastname; %><br>
+                                                    <%= user.email; %><br>
+                                                    <%= user.number; %>
+                                                </td>
+                                                <td class="text-start">
+                                                    <%=  booking.vehicle_make %>
+                                                    <%= booking.vehicle_name %>
+                                                    <%= booking.vehicle_model %><br>
+                                                    License #: <%= booking.vehicle_lesNumber %><br>
+                                                    Engine Type: <%= booking.vehicle_engineType %>
+
+                                                </td>
+                                                <td class="text-center">
+                                                    <%= booking.vehicle_bookingType %>
+                                                    <br>
+                                                    
+                                                    <br>
+                                                    <%= booking.date %>
+                                                </td>
+                                                <% sr+=1 %>
+                                                <% }) %>
+                                            </tr>
+                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane card-body fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- MY ACCOUNT -->
+<%- include('partials/footer'); %>

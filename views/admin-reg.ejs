@@ -1,0 +1,132 @@
+
+<%- include('partials/header'); %>
+
+<!-- BREADCRUMB -->
+<section class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">HOME</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              SIGN UP
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BREADCRUMB -->
+
+<!-- ABOUT US CONTENT -->
+<section class="about">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-5">
+        <img
+          src="assets/images/sign-up.jpg"
+          class="w-100"
+          alt="contact us"
+        />
+      </div>
+      <div class="col-md-7">
+        <div class="card">
+          <div class="card-body">
+            <% if(locals.errors){ %> <% errors.forEach(function(error) { %>
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                      <%= error.msg %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+              <% }); %> <% } %> <% if(success_msg != ''){ %>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <%= success_msg %>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  </div>
+              </div>
+                
+              <% } %> <% if(error_msg != ''){ %>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <%= error_msg %>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  </div>
+              </div>
+              <% } %> <% if(error != ''){ %>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <%= error %>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  </div>
+              </div>
+              <% } %>
+
+            <form class="row g-3" action="/admin-reg" method="post">
+              
+              
+              <div class="col-md-6">
+                <label for="lastname" class="form-label">Username: </label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control form-control-sm"
+                  id="username"
+                  placeholder="Type Here..."
+                  value="<%= typeof username != 'undefined' ? username: '' %>" required
+                />
+              </div>
+              
+              <div class="col-md-6">
+                <label for="lastname" class="form-label">Password: </label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control form-control-sm"
+                  id="password"
+                  placeholder="Type Here..."
+                  value="<%= typeof password != 'undefined' ? password: '' %>" required
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="lastname" class="form-label"
+                  >Confirm Password:
+                </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  class="form-control form-control-sm"
+                  id="confirmPassword"
+                  placeholder="Type Here..."
+                  value="<%= typeof confirmPassword != 'undefined' ? confirmPassword: '' %>" required
+                />
+              </div>
+              
+             
+              <div class="col-12 text-end">
+                <button type="submit" class="btn btn-sm btn-danger">
+                  REGISTER ME
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ABOUT US CONTENT -->
+
+
+<%- include('partials/footer'); %>

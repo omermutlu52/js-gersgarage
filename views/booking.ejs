@@ -1,0 +1,248 @@
+<%- include('partials/header'); %>
+
+  <!-- BREADCRUMB -->
+  <section class="breadcrumb-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">HOME</a></li>
+              <li class="breadcrumb-item active" aria-current="page">
+                BOOKING
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- BREADCRUMB -->
+
+  <!-- ABOUT US CONTENT -->
+  <section class="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <ol class="list-group list-group-numbered">
+            <li class="
+                  list-group-item
+                  d-flex
+                  justify-content-between
+                  align-items-start
+                ">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Name:</div>
+                <%=  user.firstname + " " +user.lastname %>
+              </div>
+            </li>
+            <li class="
+                  list-group-item
+                  d-flex
+                  justify-content-between
+                  align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Email Address:</div>
+                <%= user.email %>
+              </div>
+            </li>
+            <li class="
+                  list-group-item
+                  d-flex
+                  justify-content-between
+                  align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Number:</div>
+                <%= user.number %>
+              </div>
+            </li>
+            <li class="
+                  list-group-item
+                  d-flex
+                  justify-content-between
+                  align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Address:</div>
+                <%= user.address %>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <% if(locals.errors){ %> <% errors.forEach(function(error) { %>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <%= error.msg %>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                  </div>
+              </div>
+                <% }); %> <% } %> <% if(success_msg != ''){ %>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <%= success_msg %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                  
+                <% } %> <% if(error_msg != ''){ %>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <%= error_msg %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <% } %> <% if(error != ''){ %>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <%= error %>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+              <form class="row g-3" action="/booking" method="POST">
+              <div class="col-md-4">
+                  <label for="vehicle_make" class="form-label">
+                    Vehicle Make *:
+                  </label>
+                  <select id="vehicle_make" name="vehicle_make" class="form-select form-select-sm"  placeholder="Choose" required>
+                    <option hidden >Choose Vehicle Make</option>
+                    <option value="Alfa Romeo">Alfa Romeo</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Bentley">Bentley</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Citroen">Citroen</option>
+                    <option value="Dacia">Dacia</option>
+                    <option value="Daihatsu">Daihatsu</option>
+                    <option value="Ford">Ford</option>
+                    <option value="HSV">HSV</option>
+                    <option value="Hyundai">Hyundai</option>
+                    <option value="Isuzu">Isuzu</option>
+                    <option value="Jaguar">Jaguar</option>
+                    <option value="Jeep">Jeep</option>
+                    <option value="Jetta">Jetta</option>
+                    <option value="Kia">Kia</option>
+                    <option value="Lada">Lada</option>
+                    <option value="Land Rover">Land Rover</option>
+                    <option value="Lexus">Lexus</option>
+                    <option value="Mazda">Mazda</option>
+                    <option value="McLaren">McLaren</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Mini">Mini</option>
+                    <option value="Mitsubishi">Mitsubishi</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Peugeot">Peugeot</option>
+                    <option value="Renault">Renault</option>
+                    <option value="Seat">Seat</option>
+                    <option value="Skoda">Skoda</option>
+                    <option value="Suzuki">Suzuki</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                    <option value="Volvo">Volvo</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div> 
+                <div class="col-md-4">
+                  <label for="vehicle_type" class="form-label">
+                    Vehicle Type *: 
+                  </label>
+                  <select id="vehicle_type" name="vehicle_type" class="form-select form-select-sm" required>
+                    <option hidden >Choose Vehicle Type</option>
+                    <option value="Car">Car</option>
+                    <option value="Small Van">Small Van</option>
+                    <option value="Small Bus">Small Bus</option>
+                    <option value="Motorbike">Motorbike</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="lastname" class="form-label">Vehicle Name: *
+                  </label>
+                  <input type="text" name="vehicle_name" class="form-control form-control-sm" id="lastname" placeholder="For Example: ES 350 Sports" value="" required />
+                </div>
+                <div class="col-6">
+                  <label for="email" class="form-label">
+                    Vehicle Model: *
+                  </label>
+                  <input type="text" name="vehicle_model" class="form-control form-control-sm" id="vehicle_model" placeholder="For Example: 2021" value="" required />
+                </div>
+                <div class="col-6">
+                  <label for="email" class="form-label">
+                    Vehicle License Number: *
+                  </label>
+                  <input type="text" name="vehicle_lesNumber" class="form-control form-control-sm" id="vehicle_lesNumber" placeholder="Type Here..." value="" required />
+                </div>
+                <div class="col-md-4">
+                  <label for="vehicle_engineType" class="form-label">
+                    Vehicle Engine Type: *
+                  </label>
+                  <select id="vehicle_engineType" name="vehicle_engineType" class="form-select form-select-sm" required>
+                    <option hidden >Choose Engine Type</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Hybrid">Hybrid</option>
+                    <option value="Electric">Electric</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="inputState" class="form-label">
+                    Booking Type: *
+                  </label>
+                  <select id="vehicle_bookingType" name="vehicle_bookingType" class="form-select form-select-sm" required>
+                    <option hidden >Choose Booking Type</option>
+                    <option value="Annual Service">Annual Service</option>
+                    <option value="Major Service">Major Service</option>
+                    <option value="Repair / Fault">
+                      Repair / Fault
+                    </option>
+                    <option value="Major Repair">
+                      Major Repair
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="date" class="form-label">
+                    Date: *
+                  </label>
+                  <input type="date" name="date" class="form-control form-control-sm" id="date" min="3000-01-01" onfocus="this.min=new Date().toISOString().split('T')[0]"  value="" required />
+                </div>
+                <div class="col-md-12">
+                  <label for="description" class="form-label">
+                    Description:
+                  </label>
+                  <textarea name="description" class="form-control form-control-sm" id="description"></textarea>
+                </div>
+                <input type="hidden" id="fname" name="fname" value= <%= user.firstname %>>
+                <input type="hidden" id="lname" name="lname" value= <%= user.lastname %>>
+                <input type="hidden" id="email" name="email" value= <%= user.email %>>
+                <input type="hidden" id="number" name="number" value= <%= user.number %>>
+                <input type="hidden" id="username" name="username" value= <%= user.username %>>
+
+                <div class="col-12 text-end">
+                  <button type="submit" class="btn btn-sm btn-danger">
+                    CONFIRM BOOKING
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ABOUT US CONTENT -->
+
+ 
+
+  <%- include('partials/footer'); %>
